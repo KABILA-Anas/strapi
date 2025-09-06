@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import union from 'lodash/union';
+
 import { useAuth } from '@strapi/admin/strapi-admin';
 import { unstable_useDocument as useDocument } from '@strapi/content-manager/strapi-admin';
 import { useParams } from 'react-router-dom';
@@ -33,11 +35,11 @@ const useI18n: UseI18n = () => {
     return permissions.reduce<Omit<ReturnType<UseI18n>, 'hasI18n'>>(
       (acc, permission) => {
         const [actionShorthand] = permission.action.split('.').slice(-1);
+        const key = `can${capitalize(actionShorthand)}`;
 
-        return {
-          ...acc,
-          [`can${capitalize(actionShorthand)}`]: permission.properties?.locales ?? [],
-        };
+        acc[key] = union(acc[key] ?? [], permission.properties?.locales ?? []);
+
+        return acc;
       },
       { canCreate: [], canRead: [], canUpdate: [], canDelete: [], canPublish: [] }
     );
