@@ -1,15 +1,6 @@
 import * as React from 'react';
 
-import {
-  Button,
-  Flex,
-  Grid,
-  Main,
-  Textarea,
-  TextInput,
-  Typography,
-  Field,
-} from '@strapi/design-system';
+import { Button, Flex, Grid, Textarea, TextInput, Typography, Field } from '@strapi/design-system';
 import { Check } from '@strapi/icons';
 import { Page, useTracking, useNotification, useFetchClient, Layouts } from '@strapi/strapi/admin';
 import { Formik, Form } from 'formik';
@@ -68,7 +59,7 @@ export const CreatePage = () => {
   };
 
   return (
-    <Main>
+    <Page.Main>
       <Page.Title>
         {formatMessage(
           { id: 'Settings.PageTitle', defaultMessage: 'Settings - {name}' },
@@ -141,7 +132,7 @@ export const CreatePage = () => {
                             defaultMessage: 'Name',
                           })}
                         </Field.Label>
-                        <TextInput value={values.name || ''} onChange={handleChange} />
+                        <TextInput type="text" value={values.name || ''} onChange={handleChange} />
                         <Field.Error />
                       </Field.Root>
                     </Grid.Item>
@@ -183,7 +174,7 @@ export const CreatePage = () => {
           </Form>
         )}
       </Formik>
-    </Main>
+    </Page.Main>
   );
 };
 

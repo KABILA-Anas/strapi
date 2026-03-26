@@ -1,15 +1,6 @@
 import * as React from 'react';
 
-import {
-  Main,
-  Button,
-  Flex,
-  TextInput,
-  Textarea,
-  Typography,
-  Grid,
-  Field,
-} from '@strapi/design-system';
+import { Button, Flex, TextInput, Textarea, Typography, Grid, Field } from '@strapi/design-system';
 import { Check } from '@strapi/icons';
 import {
   Page,
@@ -86,7 +77,7 @@ export const EditPage = () => {
   }
 
   return (
-    <Main>
+    <Page.Main>
       <Page.Title>
         {formatMessage(
           { id: 'Settings.PageTitle', defaultMessage: 'Settings - {name}' },
@@ -162,7 +153,7 @@ export const EditPage = () => {
                             defaultMessage: 'Name',
                           })}
                         </Field.Label>
-                        <TextInput value={values.name || ''} onChange={handleChange} />
+                        <TextInput type="text" value={values.name || ''} onChange={handleChange} />
                         <Field.Error />
                       </Field.Root>
                     </Grid.Item>
@@ -204,7 +195,7 @@ export const EditPage = () => {
           </Form>
         )}
       </Formik>
-    </Main>
+    </Page.Main>
   );
 };
 
